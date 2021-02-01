@@ -46,7 +46,7 @@ func (w *AsyncWriter) WriteEntry(e *Entry) (int, error) {
 	// cheating to logger pool
 	entry := epool.Get().(*Entry)
 	entry.Level = e.Level
-	entry.buf, e.buf = e.buf, entry.buf
+	entry.buf = e.buf
 
 	w.ch <- entry
 	return len(entry.buf), nil
